@@ -54,3 +54,8 @@ data/
 .env
 .gradle/
 highestScore.txt
+
+# ─── Documents / presentations (not source code) ─────────────────────────────
+*.docx
+*.pdf
+Outline.txt
