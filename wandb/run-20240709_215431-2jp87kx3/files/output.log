@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/work/rleap1/rishabh.bhatia/miniconda3/envs/train/lib/python3.10/runpy.py", line 196, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "/work/rleap1/rishabh.bhatia/miniconda3/envs/train/lib/python3.10/runpy.py", line 86, in _run_code
-    exec(code, run_globals)
-  File "/work/rleap1/rishabh.bhatia/Master-Thesis-GNN/games/pong/run_supervised_gnn.py", line 96, in <module>
-    model = PPO('MlpPolicy', envs, policy_kwargs=policy_kwargs, verbose=2, tensorboard_log="./logs/Pong-GNN", **normalize_kwargs)
-NameError: name 'normalize_kwargs' is not defined
