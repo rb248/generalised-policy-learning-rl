@@ -1,0 +1,56 @@
+# ─── OS & Editor ────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# ─── Trained model files (Stable-Baselines3 / PyTorch) ──────────────────────
+*.zip
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.pb
+*.h5
+*.hdf5
+*.safetensors
+models/
+checkpoints/
+saved_models/
+
+# ─── Experiment / logging artefacts ─────────────────────────────────────────
+wandb/
+logs/
+runs/
+tensorboard_logs/
+ppo_tensorboard/
+ppo_freeway_tensorboard/
+ppo_pong_training/
+pong_gnn_training/
+*.out
+*.log
+
+# ─── Data & notebooks ────────────────────────────────────────────────────────
+*.csv
+*.json
+data/
+*.ipynb_checkpoints/
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+.env
+.gradle/
+highestScore.txt

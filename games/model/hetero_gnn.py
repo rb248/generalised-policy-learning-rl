@@ -158,6 +158,7 @@ from torch_geometric.typing import Adj
 
 from games.model.hetero_message_passing import FanInMP, FanOutMP
 from torch_geometric.nn import GCNConv, GATConv
+from torch_geometric.nn import AttentionalAggregation
 
 class HeteroGNN(torch.nn.Module):
     def __init__(
@@ -212,6 +213,9 @@ class HeteroGNN(torch.nn.Module):
             dst_name=obj_type_id,
             aggr=aggr,
         )
+        self.attn_aggregation = AttentionalAggregation(gate_nn=torch.nn.Linear(hidden_size, 1))
+
+
 
     def encoding_layers(self, x_dict: Dict[str, Tensor], device: torch.device) -> Dict[str, Tensor]:
         # Resize everything by the hidden_size
@@ -231,6 +235,7 @@ class HeteroGNN(torch.nn.Module):
         obj_emb = torch.cat([x_dict[self.obj_type_id], out[self.obj_type_id]], dim=1)
         obj_emb = self.obj_update(obj_emb)
         x_dict[self.obj_type_id] = obj_emb
+
 
     def forward(
         self,
@@ -258,9 +263,10 @@ class HeteroGNN(torch.nn.Module):
         )
         
         # Aggregate all object embeddings into one aggregated embedding
-        aggr = pyg.nn.global_add_pool(obj_emb, batch)  # shape [hidden, 1]
-        
+        #aggr = pyg.nn.global_add_pool(obj_emb, batch)  # shape [hidden, 1]
+        #
         # Produce final single scalar of shape [1]
+        aggr = self.attn_aggregation(obj_emb, batch)
         return aggr
 
     @staticmethod

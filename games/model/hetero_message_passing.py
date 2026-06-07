@@ -246,8 +246,7 @@ class HeteroRouting(torch.nn.Module):
             if src == dst and src in x_dict:
                 x = x_dict[src]
             elif src in x_dict or dst in x_dict:
-                print(f"src: {src}, dst: {dst}")
-                print(f"x_dict src: {x_dict.get(src,None).shape}, x_dict dst: {x_dict.get(dst,None).shape}")
+                
                 x = (
                     x_dict.get(src, None),
                     x_dict.get(dst, None),

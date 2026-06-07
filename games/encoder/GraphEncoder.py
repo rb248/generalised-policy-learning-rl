@@ -216,23 +216,23 @@ class GraphEncoderFreeway:
             car_indices = [i for i in range(num_nodes) if node_features[i, -1] == 1]
             atom_features = torch.zeros((2, object_feature_length)).tolist()
 
-            # Add atom which connects all objects to chicken
-            # if chicken_indices:
-            #     for i in chicken_indices:
-            #         for j in range(num_nodes):
-            #             if i != j:
-            #                 graph.add_node(atom_index, type="atom", features=atom_features)
-            #                 graph.add_edge(i, atom_index, position=0) 
-            #                 graph.add_edge(j, atom_index, position=1)
-            #                 atom_index += 1 
-            # connect all objects to each other
-            for i in range(num_nodes):
-                for j in range(num_nodes):
-                    if i != j:
-                        graph.add_node(atom_index, type="atom", features=atom_features)
-                        graph.add_edge(i, atom_index, position=0)
-                        graph.add_edge(j, atom_index, position=1)
-                        atom_index += 1
+            #Add atom which connects all objects to chicken
+            if chicken_indices:
+                for i in chicken_indices:
+                    for j in range(num_nodes):
+                        if i != j:
+                            graph.add_node(atom_index, type="atom", features=atom_features)
+                            graph.add_edge(i, atom_index, position=0) 
+                            graph.add_edge(j, atom_index, position=1)
+                            atom_index += 1 
+            # #connect all objects to each other
+            # for i in range(num_nodes):
+            #     for j in range(num_nodes):
+            #         if i != j:
+            #             graph.add_node(atom_index, type="atom", features=atom_features)
+            #             graph.add_edge(i, atom_index, position=0)
+            #             graph.add_edge(j, atom_index, position=1)
+            #             atom_index += 1
 
             # # Add ChickenOnLane and CarOnLane atoms and edges
             # for i in chicken_indices + car_indices:

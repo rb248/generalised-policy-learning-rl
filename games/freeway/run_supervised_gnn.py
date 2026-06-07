@@ -77,7 +77,7 @@ policy_kwargs = dict(
         arity_dict ={'atom':2},
         game='freeway',
     ),
-    net_arch=dict(pi=[64, 64], vf=[128, 128, 64]),  # Specify the network architecture for policy and value function
+    net_arch=dict(pi=[64, 64], vf=[128, 128]),  # Specify the network architecture for policy and value function
     activation_fn=torch.nn.ReLU
 )
 
@@ -103,4 +103,4 @@ model.save("ppo_custom_heterognn")
 stats = pstats.Stats(profiler).sort_stats('cumtime')
 
 # Print the 10 most time-consuming functions
-stats.print_stats()
+# stats.print_stats()
